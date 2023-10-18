@@ -29,5 +29,53 @@ class TicketMachineTest {
                 // Les montants ont été correctement additionnés  
 		assertEquals(10 + 20, machine.getBalance(), "La balance n'est pas correctement mise à jour");              
 	}
+	
+	@Test
+	void pasImprimerSiSuffiant () {
+		machine.insertMoney (PRICE -1);
+		assertFalse(machine.printTicket(), "le ticket ne doit pas s'imprimer") ;
+	}
+	@Test
+	void imprimerSiSuffisant () {
+	machine.insertMoney (PRICE);
 
+	assertTrue(machine.printTicket() , "le ticket doit s'imprimer" )	; 
+	}
+	
+@Test
+	void decrementer () {
+	machine.insertMoney (PRICE);
+	machine.printTicket () ; 
+	assertTrue ( machine.getBalance () == 0 ,  "la balance est décrémenter du ticket") ; 
 }
+
+@Test
+	void miseJour () {
+	machine.insertMoney (PRICE);
+	machine.printTicket () ; 
+	assertEquals ( machine.getBalance () , 0 , "mise a jour effectuée") ; 
+}
+
+
+@Test
+	void refund  () {
+	machine.insertMoney (PRICE);
+	machine.printTicket () ; 
+	
+	assertEquals ( machine.getTotal (),  PRICE , "mise a jour effectuée") ; 
+}
+
+
+void refund2 () {
+	machine.insertMoney (PRICE);
+	machine.printTicket () ; 
+	
+	assertEquals ( machine.getTotal () ==0, 0  , "mise a jour effectuée") ; 
+}
+
+
+@Test
+	void negatif () {
+	machine.insertMoney (PRICE -60 );	
+	assertFalse (machine. getBalance )
+ }
