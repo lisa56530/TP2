@@ -79,3 +79,15 @@ void refund2 () {
 	machine.insertMoney (PRICE -60 );	
 	assertFalse (machine. getBalance )
  }
+
+@TesT
+	void cantInsertNegativeMoney(){
+		assertThrows(IllegalArgumentException.class, () -> {machine.insertMoney(-10);},  "La machine ne doit pas recevoir des montants négatifs");
+	}
+
+@Test
+	void cantCreateTicketMachineWithNegativePrice(){
+		assertThrows(IllegalArgumentException.class, () -> {new TicketMachine(-1);}, "");
+	}
+}
+	
