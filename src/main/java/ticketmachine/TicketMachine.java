@@ -64,6 +64,10 @@ public class TicketMachine {
 	 */
 	public void insertMoney(int amount) {
 		balance = balance + amount;
+		if (amount <= 0) {
+			throw new IllegalArgumentException("amount must be positive");
+		}
+		balance = balance + amount;
 	}
 
 	/**
@@ -73,7 +77,9 @@ public class TicketMachine {
 	 */
 	public int refund() {
 		System.out.println("Je vous rends : " + balance + " centimes");
-		return balance;
+		int refundMoney = balance;
+		balance = 0;
+		return refundMoney;
 	}
 
 	/**
@@ -84,8 +90,9 @@ public class TicketMachine {
 	public boolean printTicket() {
 		
 
-		if (this.balance == this.price) {
-			// Simulate the printing of a ticket.
+		if (balance >= price){
+			balance = balance-price;
+			total = total+price;
 		System.out.println("##################");
 		System.out.println("# The BlueJ Line");
 		System.out.println("# Ticket");
